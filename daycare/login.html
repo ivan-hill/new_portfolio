@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>FLOSS FACTORY |Login </title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link href="css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.typekit.net/uhi2wwd.css">
+	</head>
+
+<body>
+	
+	<div class="main-top" id="home">
+		
+		<header>
+			<div class="container-fluid">
+				<div class="header d-md-flex justify-content-between align-items-center py-3 px-xl-5 px-lg-3 px-2">
+					<!-- logo -->
+					<div id="logo">
+						<h1><a class="" href="index.html">FLOSS FACTORY</a></h1>
+					</div>
+					<!-- //logo -->
+					<!-- nav -->
+					<div class="nav">
+						<nav>
+							<label for="drop" class="toggle">Menu</label>
+							<input type="checkbox" id="drop" />
+							<ul class="menu">
+								<li class="active"><a href="index.html">Home</a></li>
+								<li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="#about">About Us</a></li>
+								<li><a href="#gallery">Gallery</a></li>
+								<li class="mx-lg-4 mx-md-3 my-md-0 my-2">
+									<!-- First Tier Drop Down -->
+									<label for="drop-2" class="toggle toogle-2">Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
+									</label>
+									<a href="#">More <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+									<input type="checkbox" id="drop-2" />
+									<ul>
+										<li><a href="#services" class="drop-text">Services</a></li>
+										<li><a href="#blog" class="drop-text">Blog</a></li>
+										
+									</ul>
+								</li>
+								<li><a href="#contact">Contact Us</a></li>
+							</ul>
+						</nav>
+					</div>
+					<!-- //nav -->
+				</div>
+			</div>
+		</header>
+<style>
+  * {
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+  font-size: 14px;
+}
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  margin: 100px auto;
+  background: #ecf0f1;
+  border-radius: 10px;
+}
+.signup, .login {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.signup .btn, .login .btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 50px;
+}
+.form-container {
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  padding-top: 30px;
+  background: #fff;
+  width: 50%;
+  box-shadow: 0 0 60px -10px rgba(0,0,0,.25);
+  z-index: 1;
+  overflow: hidden;
+  transition: .7s;
+}
+.btn {
+  width: 130px;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 25px;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: .7px;
+  text-align: center;
+  z-index: 2;
+  cursor: pointer;
+}
+.btn:hover {
+  opacity: 0.85;
+}
+.btn-primary {  
+  background: #2ecc71;
+}
+.btn-secondary {
+  background: #0984e3;
+}
+input {
+  border: none;
+  border-bottom: 1px solid #bdc3c7;
+  padding: 5px 3px;
+  width: 70%;
+  display: block;
+  margin: 40px auto;
+  transition: .7s;
+}
+input::placeholder {
+  color: rgba(0,0,0,.4);
+}
+input:focus {
+  outline-style:none;
+  box-shadow: 0 1px 0 #bdc3c7;
+  border-top: transparent;
+  transition: 200ms;
+}
+input[type="radio"] {
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+#signupChecked:checked + .form-container {
+  left: 0;
+}
+#signupChecked:not(:checked) + .form-container {
+  left: 50%;
+}
+#signupChecked:not(:checked) + .form-container input[type="text"]:nth-child(1) {
+  margin-top: -90px;
+  opacity: 0;
+  visibility: 0;
+}
+#signupChecked:not(:checked) + .form-container input[type="text"]:nth-child(2) {
+  opacity: 0;
+  visibility: 0;
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700" rel="stylesheet">
+
+<div class="container">
+<input type="radio" name="formOption" id="loginChecked">
+<input type="radio" name="formOption" id="signupChecked" checked>
+<div class="form-container">
+<input type="text" placeholder="First name">
+<input type="text" placeholder="Last name">
+<input type="text" placeholder="Email">
+<input type="text" placeholder="Password">
+</div>
+<div class="signup">
+<label for="signupChecked" class="btn btn-primary">
+Sign Up
+</label>
+</div>
+<div class="login">
+<label for="loginChecked" class="btn btn-secondary"><a href="index.html">Login</a>
+
+</label>
+</div>
+</div>
+</body>
+</html>
