@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Ivan Hill| Junior Web Developer</title>
+		<meta name="description" content="A template with animated columns and a content preview." />
+		<meta name="keywords" content="layout, uidesign, template, css, javascript, columns, grid" />
+		<meta name="author" content="Ivan-Hill" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="https://use.typekit.net/bml8yys.css">
+		<!--<link rel="stylesheet" type="text/css" href="css/style.css" />-->
+		<style>
+		article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em 0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C" "\201D" "\2018" "\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:0;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 14px;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	--color-text: #252528;
+	--color-bg: #afb6bc;
+	--color-link: #252528;
+	--color-link-hover: #252528;
+	--color-menu-text: #252528;
+	--color-bg-move: #afb6bc;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: fieldwork-hum, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+main {
+	width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    align-items: center;
+}
+
+.js main {
+	overflow: hidden;
+}
+
+.cursor {
+	display: none;
+}
+
+/* Page Loader */
+.js .loading::before {
+	content: '';
+	position: fixed;
+	z-index: 100000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--color-bg);
+}
+
+.js .loading::after {
+	content: '';
+	position: fixed;
+	z-index: 100000;
+	top: 50%;
+	left: 50%;
+	width: 60px;
+	height: 60px;
+	margin: -30px 0 0 -30px;
+	pointer-events: none;
+	border-radius: 50%;
+	opacity: 0.4;
+	background: var(--color-link);
+	animation: loaderAnim 0.7s linear infinite alternate forwards;
+}
+
+@keyframes loaderAnim {
+	to {
+		opacity: 1;
+		transform: scale3d(0.5,0.5,1);
+	}
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-link);
+	
+}
+
+a:hover,
+a:focus {
+	color: var(--color-link-hover);
+	outline: 0;
+}
+
+.frame {
+	padding: 1rem;
+	text-align: center;
+	position: relative;
+	z-index: 1000;
+	grid-area: 1 / 1 / 2 / 2;
+	align-self: start;
+}
+
+.frame__title {
+	font-size: 1rem;
+	margin: 0 0 1rem;
+}
+
+.frame__links {
+	display: inline;
+}
+
+.frame__github,
+.frame__links a:not(:last-child),
+.frame__demos a:not(:last-child) {
+	margin-right: 1rem;
+}
+
+.frame__demos {
+	margin: 1rem 0;
+}
+
+.frame__demo--current,
+.frame__demo--current:hover {
+	color: var(--color-text);
+}
+
+.content, 
+.content__move {
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 100%;
+	align-items: center;
+	grid-area: 1 / 1 / 2 / 2;
+	justify-self: center;
+	position: relative;
+	will-change: transform;
+}
+
+.content--first {
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+.content__move {
+	background: var(--color-bg-move);
+}
+
+.columns {
+	grid-area: 1 / 1 / 2 / 2;
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: grid;
+	grid-template-columns: repeat(4,1fr);
+	grid-template-rows: 100%;
+	grid-gap: 1.5rem;
+	padding: 0 8vw;
+}
+
+.column {
+	position: relative;
+	align-self: start;
+	will-change: transform;
+}
+
+.column--bottom {
+	align-self: end;
+}
+
+.column__img {
+	width: 100%;
+	display: block;
+	opacity: 0.4;
+	background-size: cover;
+	background-position: 50% 50%;
+	height: 25vw;
+}
+
+.column__img:nth-child(odd) {
+	height: 30vw;
+}
+
+.column__img:not(:last-child) {
+	margin-bottom: 1.5rem;
+}
+
+.menu {
+	grid-area: 1 / 1 / 2 / 2;
+	width: 100vw;
+	height: 100vh;
+	padding: 15vh 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.menu__item {
+	display: flex;
+	font-weight: 800;
+	font-size: 16vw;
+	line-height: 1.1;
+	cursor: pointer;
+	padding-bottom: 1rem;
+	-webkit-text-stroke: 2px var(--color-menu-text);
+	text-stroke: 2px var(--color-menu-text);
+	-webkit-text-fill-color: transparent;
+	text-fill-color: transparent;
+	color: transparent;
+}
+
+.menu__item:hover {
+	-webkit-text-fill-color: var(--color-menu-text);
+	text-fill-color: var(--color-menu-text);
+	color: var(--color-menu-text);
+}
+
+.item {
+	position: relative;
+}
+
+.js .item {
+	grid-area: 1 / 1 / 2 / 2;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.js .item--current {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.item__img {
+	height: 300px;
+	width: 100%;
+	flex: none;
+	background-size: cover;
+	background-position: 50% 25%;
+	opacity: 0.4;
+}
+
+.item__content {
+	padding: 2rem;
+	height: calc(100vh - 300px);
+	overflow: auto;
+}
+
+.item__content-title {
+	font-size: 2.5rem;
+	margin: 0;
+	line-height: 1.2;
+	pointer-events: none;
+}
+
+.menu__item span,
+.item__content-title span {
+	display: inline-block;
+	white-space: pre;
+	pointer-events: none;
+	will-change: transform;
+}
+
+.item__content-subtitle {
+	font-weight: normal;
+	margin: 0;
+	font-size: 1.5rem;
+}
+
+.item__content-text {
+	margin: 10vh 0 4rem 0;
+	position: relative;
+	line-height: 1.5;
+}
+
+.item__content-text::after {
+	content: '';
+	width: 2rem;
+	height: 2px;
+	position: absolute;
+	background: currentColor;
+	top: calc(100% + 3rem);
+}
+
+.item__content-back {
+	cursor: pointer;
+}
+
+@media screen and (min-width: 53em) {
+	.frame {
+		position: fixed;
+		text-align: left;
+		z-index: 10000;
+		top: 0;
+		left: 0;
+		display: grid;
+		align-content: space-between;
+		width: 100%;
+		max-width: none;
+		height: 100vh;
+		padding: 3rem 4rem;
+		pointer-events: none;
+		grid-template-columns: 50% 50%;
+		grid-template-rows: auto auto auto;
+		grid-template-areas: 'title ...'
+							'... ...'
+							'links links';
+	}
+	.frame__title-wrap {
+		grid-area: title;
+		display: flex;
+	}
+	.frame__title {
+		margin: 0;
+		font-weight: normal;
+	}
+	.frame__links {
+		grid-area: links;
+		padding: 0;
+		justify-self: end;
+	}
+	.frame a {
+		pointer-events: auto;
+	}
+	.menu__item {
+		font-size: 13vh;
+	}
+	.item {
+		height: 100%;
+		width: 100%;
+		display: flex;
+	}
+	.item__img {
+		height: 100%;
+		width: 45%;
+		background-position: 50% 50%;
+	}
+	.item__content {
+		padding: 15vh 12vw 0 8vw;
+		height: calc(100% - 12rem);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		overflow: visible;
+	}
+	.item__content-title {
+		font-size: 5vw;
+	}
+	.item__content-subtitle {
+		font-size: 2vw;
+	}
+	.item__content-text {
+		margin-bottom: 0;
+	}
+}
+
+@media (any-pointer: fine) {
+	.cursor {
+		display: block;
+	}
+	.cursor__inner {
+		z-index: 9999;
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		mix-blend-mode: difference;
+		border-radius: 50%;
+	}
+	.cursor__inner--circle {
+		width: 25px;
+		height: 25px;
+		border: 1px solid #fff;
+	}
+}
+
+		</style>
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+	</head>
+	<body class="loading">
+		<main>
+			<div class="frame">
+				<div class="frame__title-wrap">
+					<h1 class="frame__title">Animated Image Columns</h1>
+				</div>
+				<div class="frame__links">
+					<a href="https://ihill.tech/">ihill.tech</a>
+					
+					
+				</div>
+			</div>
+			<div class="content content--second">
+				<article class="item">
+					<div class="item__img" style="background-image: url(../AnimatedImageColumns/img/atrain.jpg)"></div>
+					<div class="item__content">
+						<a class="item__content-back">back</a>
+						<h2 class="item__content-title">Ijeoma Emetu</h2>
+						<h3 class="item__content-subtitle">Fashion artisans at work</h3>
+						<div class="item__content-text">
+							<p>Now, when anything attracted his attention he always asked what it meant; and his mother, or more frequently Uncle Maxim, would explain to him the nature of the objects or of the creatures that caused these various sounds.</p>
+							<p>His mother’s explanations, more lively and graphic, impressed the boy with greater force; but sometimes this impression would be too painful. </p>
+							<p>Upon the features of the young woman, herself suffering, could be read the expression of her inmost feelings, and in her eyes a silent protest or a look of pain, as she strove to convey to the child an idea of form and color.</p>
+						</div>
+					</div>
+				</article>
+				<article class="item">
+					<div class="item__img" style="background-image: url(../AnimatedImageColumns/img/blacklip.jpg)"></div>
+					<div class="item__content">
+						<a class="item__content-back">back</a>
+						<h2 class="item__content-title">Make Up</h2>
+						<h3 class="item__content-subtitle">Contemporary makeup art</h3>
+						<div class="item__content-text">
+							<p>Thus blindness proved no drawback to systematic physical development, while its influence over the moral nature of the child was reduced to its minimum. He was tall for his age and well built; his face was somewhat pale, his features fine and expressive. </p>
+							<p>His dark hair enhanced the pallid hue of his complexion, while his eyes—large, dark, and almost motionless—gave him a peculiar aspect that at once attracted attention.</p>
+							<p>A slight wrinkle between his eye-brows, a habit of inclining his head slightly forward, and the expression of sadness that[93] sometimes overcast his handsome face — these were the outward tokens of his blindness. </p>
+						</div>
+					</div>
+				</article>
+				<article class="item">
+					<div class="item__img" style="background-image: url(../AnimatedImageColumns/img/blownaway.jpg)"></div>
+					<div class="item__content">
+						<a class="item__content-back">back</a>
+						<h2 class="item__content-title">On Site</h2>
+						<h3 class="item__content-subtitle">Back to Business</h3>
+						<div class="item__content-text">
+							<p>The impressions received through the channels of sound outweighed all others in their influence over the life of the blind boy; his ideas shaped themselves according to sounds, his sense of hearing became the centre of his mental activity.</p>
+							<p>The enchanting melodies of the songs he heard conveyed to him a true sense of the words, coloring them with sadness or joy according to the lights and shades of the melody. </p>
+							<p>He quickly learned all his mother taught him on the piano, and yet he still loved Joachim’s pipe.</p>
+						</div>
+					</div>
+				</article>
+				<article class="item">
+					<div class="item__img" style="background-image: url(../AnimatedImageColumns/img/bluebike.jpg)"></div>
+					<div class="item__content">
+						<a class="item__content-back">back</a>
+						<h2 class="item__content-title">Urban Vibe</h2>
+						<h3 class="item__content-subtitle">Taking the Gloves Off!</h3>
+						<div class="item__content-text">
+							<p>Thus the boy’s day was filled; he could not complain of the lack of new impressions. </p>
+							<p>He seemed to be living as full a life as any child could possibly live; in fact he really seemed unconscious of his blindness.</p>
+							<p>Nevertheless, a certain premature sadness was still perceptible in his character, which Maxim ascribed to the fact that he had never mingled with other children, and endeavored to atone for this omission.</p>
+						</div>
+					</div>
+				</article>
+			</div>
+			<div class="content content--first">
+				<div class="content__move">
+					<div class="columns">
+						<div class="column">
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/bluebike.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/blurred.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/breemore.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/factory.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/feathers.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/jjstudio.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//lacejacket.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/lashes.jpg)"></div>
+							<div class="column__img" style="background-image:url(img/maxbeauty.jpg)"></div>
+						</div>
+						<div class="column column--bottom">
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//mib.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/mohawk.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//redshirt.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//redwall.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/rim.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//snake.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//sterling.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/lashes.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//tunnel.jpg)"></div>
+						</div>
+						<div class="column">
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/mib.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//mohawk.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//redshirt.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//redwall.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//rim.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//snake.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//sterling.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/lashes.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/tunnel.jpg)"></div>
+						</div>
+						<div class="column column--bottom">
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/redwall.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/rim.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/snake.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/mohawk.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/staircase.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img//yellowpants.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/windystreet.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/keenan.jpg)"></div>
+							<div class="column__img" style="background-image:url(../AnimatedImageColumns/img/stripshirt.jpg)"></div>
+						</div>
+					</div><!--/columns-->
+					<nav class="menu">
+						<a class="menu__item">Ijeoma Emetu</a>
+						<a class="menu__item">Glamour</a>
+						<a class="menu__item">On Site</a>
+						<a class="menu__item">Urban Vibe</a>
+					</nav>
+				</div><!--/content--move-->
+			</div><!--/content-->
+		</main>
+		<div class="cursor">
+			<div class="cursor__inner cursor__inner--circle"></div>
+		</div>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/charming.min.js"></script>
+		<script src="js/bezier-easing.min.js"></script>
+		<script src="js/TweenMax.min.js"></script>
+		<script src="js/demo.js"></script>
+	</body>
+</html>
